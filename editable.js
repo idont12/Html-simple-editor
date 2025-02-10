@@ -269,6 +269,9 @@ const allClasses = getAllClasses();
 //Popup element
 const allPopup = document.createElement('div');
 
+//Notification element
+const notificationElement = document.createElement('div');
+
 //contextMenu element
 let contextMenu = document.createElement('div');
 
@@ -377,10 +380,9 @@ function initCopyHtml(){
   copyButton.onclick = copyCleanHTML;
   document.body.appendChild(copyButton);
 
-  const copyNotification = document.createElement('div');
-copyNotification.className = 'sectionEditor notification editorUI';
-copyNotification.textContent = 'HTML copied to clipboard!';
-document.body.appendChild(copyNotification);
+notificationElement.className = 'sectionEditor notification editorUI';
+notificationElement.textContent = 'HTML copied to clipboard!';
+document.body.appendChild(notificationElement);
 }
 
 // add css
@@ -564,9 +566,9 @@ function copyCleanHTML() {
   // Copy to clipboard
   navigator.clipboard.writeText(cleanHTML).then(() => {
     // Show notification
-    copyNotification.style.display = 'block';
+    notificationElement.style.display = 'block';
     setTimeout(() => {
-      copyNotification.style.display = 'none';
+      notificationElement.style.display = 'none';
     }, 2000);
   });
 }
