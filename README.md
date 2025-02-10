@@ -4,11 +4,11 @@
 
 A simple visual editor that helps you edit your HTML without writing code.
 
-### JS File:
-👉 [The editor code](https://github.com/idont12/Html-simple-editor/blob/main/editable.js)
-
 ### Example:
 👉 [Try it out here!](https://idont12.github.io/Html-simple-editor/Example)
+
+### JS File:
+👉 [The editor code](https://github.com/idont12/Html-simple-editor/blob/main/editable.js)
 
 ## Features
 
