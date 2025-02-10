@@ -65,6 +65,12 @@ const styleContent = `
     z-index: 1000;
 }
 
+.editorUI.popup input {
+    display: block;
+    width: 95%;
+    margin: auto;
+}
+
 .editorUI.sectionEditor {
     position: fixed;
     bottom: 20px;
@@ -404,6 +410,9 @@ function generateFilePopup() {
   Popup.className = 'popup editorUI';
   Popup.innerHTML = `
     <h3 contenteditable="false">Select File</h3>
+    <lable name="fileInputUrl">Url:</lable>
+    <input type="url" id="fileInputUrl">
+    <lable name="fileInput">or file:</lable>
     <input type="file" id="fileInput">
     <div style="margin-top: 10px;">
       <button contenteditable="false" onclick="handleFileSelection()">Select</button>
@@ -453,6 +462,7 @@ function chackClassContain(target, classList) {
 // File popup handlers
 function openFilePopup(target, type) {
   selectedElement = { element: target, type: type };
+  document.getElementById("fileInputUrl").value = "";
   allPopup.style.display = "block";
 }
 
@@ -462,17 +472,35 @@ function closeFilePopup() {
   document.getElementById('fileInput').value = '';
 }
 
-function handleFileSelection() {
-  const fileInput = document.getElementById('fileInput');
-  const file = fileInput.files[0];
+function isEmpty(input) {
+  // Remove whitespace from start and end
+  const trimmedInput = input.trim();
+  
+  // Check if input is empty or only contains whitespace
+  return trimmedInput === '' || trimmedInput.length === 0;
+}
 
-  if (file && selectedElement) {
-    const relativePath = `${ManagerPopupFile.SorcePath}${file.name}`; // Adjust the path as needed
+function handleFileSelection() {
+  const fileInputUrl = document.getElementById('fileInputUrl');
+
+  let urlPath = null;
+  if(isEmpty(fileInputUrl.value)==false){
+    urlPath = fileInputUrl.value;
+  }
+  else{
+    const fileInput = document.getElementById('fileInput');
+    const file = fileInput.files[0];
+    if(file){
+      urlPath = `${ManagerPopupFile.SorcePath}${file.name}`; // Adjust the path as needed
+    }
+  }
+
+  if (urlPath && selectedElement) {
 
     if (selectedElement.type === 'src') {
       selectedElement.element.src = relativePath;
     } else if (selectedElement.type === 'background') {
-      selectedElement.element.style.backgroundImage = `url('${relativePath}')`;
+      selectedElement.element.style.backgroundImage = `url('${urlPath}')`;
     }
 
     closeFilePopup();
