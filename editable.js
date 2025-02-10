@@ -2,136 +2,162 @@
 
 // all stylesheet
 const styleContent = `
-.editorUI {
-  direction: ltr;
-  text-align: left;
+:root{
+    --editorUI_Background:white;
+
+    --editorUI_ButtonColor:#d5d1d1;
+    --editorUI_ButtonHoverColor:#c3c3c3;
+
+    --editorUI_CopyButtonTextColor:white;
+    --editorUI_CopyButtonBackColor:#007bff;
+    --editorUI_CopyButtonBackHover:#0056b3;
+
+    --editorUI_NotificationBackColor:#28a745;
+    --editorUI_NotificationTextColor:white;
+
+    --editorUI_PopupOverlayColor:rgba(0, 0, 0, 0.5);
+
+    --editorUI-DropShadow:0 0 10px rgba(0, 0, 0, 0.2);
+
+    --editorUI-SmallPopupBorder: 1px solid rgb(204, 204, 204);
+
+    --editorUI-SelectionBoxBackColor:rgb(255 255 255 / 30%);
 }
 
-.editorUI button{
-  border: none;
-  background: #d5d1d1;
-  margin-bottom: 5px;
-  border-radius: 2px;
-  padding: 5px 10px;
-  width: 100%;
-  disaply:block;
-  }
+.editorUI {
+    direction: ltr;
+    text-align: left;
+}
 
-  .editorUI button:hover{
-    background: #c3c3c3;
-  }
+.editorUI button {
+    border: none;
+    background: var(--editorUI_ButtonColor);
+    margin-bottom: 5px;
+    border-radius: 2px;
+    padding: 5px 10px;
+    width: 100%;
+    display: block;
+}
+
+.editorUI button:hover {
+    background:  var(--editorUI_ButtonHoverColor);
+}
 
 .editorUI.popupOverlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0,0,0,0.5);
-  z-index: 999;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--editorUI_PopupOverlayColor);
+    z-index: 999;
 }
-    
-  .editorUI.popup {
+
+.editorUI.popup {
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background: white;
+    background: var(--editorUI_Background);
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    box-shadow: var(--editorUI-DropShadow);
     z-index: 1000;
-  }
+}
 
 .editorUI.sectionEditor {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background: white;
-  padding: 15px;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.2);
-  z-index: 100;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: var(--editorUI_Background);
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: var(--editorUI-DropShadow);
+    z-index: 100;
 }
 
 .editorUI .template-select {
-  width: 100%;
-  margin-bottom: 10px;
-  padding: 5px;
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 5px;
 }
 
 .editorUI.copy-button {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  background: #007bff;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  z-index: 1000;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: var(--editorUI_CopyButtonBackColor);
+    color: var(--editorUI_CopyButtonTextColor);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    z-index: 1000;
 }
-  .editorUI.copy-button:hover {
-    background: #0056b3;
-  }
+
+.editorUI.copy-button:hover {
+    background: var(--editorUI_CopyButtonBackHover);
+}
 
 .editorUI.notification {
-  position: fixed;
-  top: 70px;
-  right: 20px;
-  background: #28a745;
-  color: white;
-  padding: 10px 20px;
-  border-radius: 4px;
-  display: none;
-  z-index: 1000;
-  height: fit-content;
+    position: fixed;
+    top: 70px;
+    right: 20px;
+    background: var(--editorUI_NotificationBackColor);
+    color: var(--editorUI_NotificationTextColor);
+    padding: 10px 20px;
+    border-radius: 4px;
+    display: none;
+    z-index: 1000;
+    height: fit-content;
 }
 
-  .editorUI#ClassManager, .editorUI.smallPopup{
-  position: absolute;
-    background: white;
-    border: 1px solid rgb(204, 204, 204);
+.editorUI#ClassManager,
+.editorUI.smallPopup {
+    position: absolute;
+    background: var(--editorUI_Background);
+    border: var(--editorUI-SmallPopupBorder);
     padding: 10px;
-    box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 5px;
+    box-shadow: var(--editorUI-DropShadow);
     z-index: 1001;
     border-radius: 8px;
-    direction:ltr;
-    text-align:left;
+    direction: ltr;
+    text-align: left;
     max-width: 300px;
-  }
-    .editorUI#ClassManager>div:nth-child(1){
+}
+
+.editorUI#ClassManager>div:nth-child(1) {
     padding-bottom: 0.25em;
     border-bottom: solid 1px;
-    }
+}
 
-        .editorUI#ClassManager>div:nth-child(2){
+.editorUI#ClassManager>div:nth-child(2) {
     overflow-y: auto;
     max-height: 200px;
     clear: both;
-    }
+}
 
-    .editorUI#ClassManager>div:nth-child(1) ul{
-    margin: 0;  
-    }
-        .editorUI#ClassManager>div:nth-child(1) ul li{
+.editorUI#ClassManager>div:nth-child(1) ul {
+    margin: 0;
+}
+
+.editorUI#ClassManager>div:nth-child(1) ul li {
     clear: both;
-    }
+}
 
-    .editorUI#ClassManager>div:nth-child(1) button{
+.editorUI#ClassManager>div:nth-child(1) button {
     float: right;
-    width:fit-content;
-    }
+    width: fit-content;
+}
 
-    .editorUI#SelectedObjectOverlay{
+.editorUI#SelectedObjectOverlay {
     position: absolute;
-    background-color: rgb(255 255 255 / 30%);
+    background-color: var(--editorUI-SelectionBoxBackColor);
     outline: 4px dashed;
     outline-offset: -4px;
     pointer-events: none;
     z-index: 999;
-    }
+}
 `;
 
 // HTML Templates
