@@ -171,7 +171,7 @@ const htmlTemplates = {
   'Welcome Page V1': `
 <section class="screen backgroundImg centerFlex" alt="" style="background-image: url(https://github.com/tauonlinecourses/TestTampImages/blob/main/WithText/TestImgRectangleHori.png?raw=true); flex-direction: column;">
 
-        <h1 class="flyBox centerX" style="bottom: 10%; text-align: center; background: #fffffff7; padding: 0.5em; font-size: 3em; line-height: 1.1; box-shadow: 0px 4px 3px 4px #00000045;">
+        <h1 class="flyBox" style="bottom: 10%; text-align: center; background: #fffffff7; padding: 0.5em; font-size: 3em; line-height: 1.1; box-shadow: 0px 4px 3px 4px #00000045;">
             Text Text Text
             <div class="BoxBottomBorder" style="width: 70%; --BoxBorderWidth:3px; margin: auto;"></div>
 
