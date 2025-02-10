@@ -1,6 +1,6 @@
 //#region Editable Customized
 
-// Add stylesheet
+// all stylesheet
 const styleContent = `
 .editorUI {
   direction: ltr;
@@ -205,7 +205,7 @@ const htmlTemplates = {
   `
 };
 
-// Determent what trigger the 
+// Manage all the popup file properties from when the popup opens to what will be the path of the file.
 const ManagerPopupFile = {
   "TriggeringClasses": ["backgroundImg", "background-image"],
   "TriggeringTag": "IMG",
@@ -213,7 +213,7 @@ const ManagerPopupFile = {
 }
 
 
-  // Remove editor elements and scripts from the code all code
+  //What element should be hidden from the copy of the html
   const elementsToRemove = [
     '.sectionEditor',
     '.popup',
@@ -231,10 +231,16 @@ const ManagerPopupFile = {
 
 //#region Editable Global Varilbels
 
+//Store all the original classes in the html file.
 const allClasses = getAllClasses();
+
+//Popup element
 const allPopup = document.createElement('div');
+
+//contextMenu element
 let contextMenu = document.createElement('div');
-let currentEditTarget = null;
+
+//save selected element
 let selectedElement = null;
 
 //#endregion
@@ -247,8 +253,10 @@ document.addEventListener('DOMContentLoaded', initEditor);
 // Initialize everything
 function initEditor() {
   initContentEditable();
+  
   generateFilePopup();
   initImageEditing();
+  
   GenerateAddTemplate();
 
   initRightClick();
@@ -279,6 +287,7 @@ function initImageEditing() {
   });
 }
 
+// Initialize for context menu - right click functionality
 function initRightClick(){
   document.addEventListener('contextmenu', (event) => {
     event.preventDefault();
@@ -310,6 +319,7 @@ function initRightClick(){
   });
 }
 
+// Initialize for context menu - html block
 function initcontextMenu(){
   contextMenu.classList.add("editorUI", "smallPopup");
   contextMenu.style.display = "none";
@@ -317,7 +327,7 @@ function initcontextMenu(){
   document.body.appendChild(contextMenu);
 }
 
-
+// Initialize the functionality of hide the selection box
 function hideSelectionBox(){
   document.addEventListener('click', () => {
     contextMenu.style.display = 'none';
@@ -341,6 +351,7 @@ copyNotification.textContent = 'HTML copied to clipboard!';
 document.body.appendChild(copyNotification);
 }
 
+// add css
 function initEditorCss(){
   const style = document.createElement('style');
 style.textContent = styleContent;
@@ -397,6 +408,8 @@ function GenerateAddTemplate(){
 
 
 //#region Editable functions
+
+//chack if the element contain one of the classes in the list
 function chackClassContain(target, classList) {
   console.log("chackClassContain");
   for(i=0;i<classList.length;i++){
@@ -502,7 +515,6 @@ function copyCleanHTML() {
     }, 2000);
   });
 }
-
 
 
 function showClassMenu() {
