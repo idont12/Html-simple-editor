@@ -398,7 +398,8 @@ document.head.appendChild(style);
 function generateFilePopup() {
   allPopup.classList.add("editorUI");
   allPopup.style.display = "none";
-
+  allPopup.contenteditable = false;
+  
   const overlay = document.createElement('div');
   overlay.classList.add('popupOverlay', "editorUI");
 
@@ -410,7 +411,7 @@ function generateFilePopup() {
   Popup.className = 'popup editorUI';
   Popup.innerHTML = `
     <h3 contenteditable="false">Select File</h3>
-    <lable name="fileInputUrl">Url:</lable>
+    <lable name="fileInputUrl">URL:</lable>
     <input type="url" id="fileInputUrl">
     <lable name="fileInput">or file:</lable>
     <input type="file" id="fileInput">
